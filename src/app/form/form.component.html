@@ -1,0 +1,98 @@
+<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
+<form [formGroup]="loginForm">
+<div class="row ">
+  <div class="col-sm-6">
+    <div class="form-group p-2">
+      <input
+        type="text"
+        formControlName="userName"
+        name="userName"
+        id="userName"
+        class="form-control"
+        placeholder=" User Name"
+        required
+        style="
+          border: none;
+          box-shadow: 0 0 5px 0 rgb(0 0 0 / 15%);
+          height: 50px;
+        "
+      />
+      <span
+        *ngIf="
+          submitted ||
+          forms['userName'].dirty ||
+          (forms['userName'].touched && forms['userName'].invalid)
+        "
+        class="info-msg text-danger"
+      >
+        <small
+          *ngIf="forms['userName'].errors && 
+                      forms['userName'].errors?.['required']"
+        >
+          *Name is required !
+        </small>
+        <small *ngIf="forms['userName'].errors?.['minlength']">
+          *You name must have atleast 3 characters !
+        </small>
+        <small *ngIf="forms['userName'].errors?.['maxlength']">
+          *Your name should not be more than 60 chracters !
+        </small>
+        <small *ngIf="forms['userName'].errors?.['pattern']">
+          *Your name should contain alphabet letters !
+        </small>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group p-2 mt-4">
+      <input
+        type="password"
+        formControlName="password"
+        name="password"
+        class="form-control"
+        required
+        style="
+          border: none;
+          box-shadow: 0 0 5px 0 rgb(0 0 0 / 15%);
+          height: 5z0px;
+        "
+        placeholder="password"
+      />
+      <span
+        *ngIf="
+          submitted ||
+          forms['password'].dirty ||
+          (forms['password'].touched && forms['password'].invalid)
+        "
+        class="info-msg text-danger"
+      >
+        <small
+          *ngIf="forms['password'].errors && 
+                        forms['password'].errors?.['required']"
+        >
+          * password is required
+        </small>
+        <small *ngIf="forms['password'].errors?.['pattern']">
+          *Invalid password enter the valid password!
+        </small>
+        <small *ngIf="forms['password'].errors?.['minlength']">
+          *password should be atleast 8 characters!
+        </small>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="">
+  <button
+  type="button"
+  class="mt-4 p-2 col-sm-2 btn btn-secondary"
+  (click)="onLoginForm(loginForm.value)"
+>
+  Send
+</button>
+</div>
+
+</form>
